@@ -62,6 +62,9 @@ resource "aws_instance" "default" {
     aws_security_group.default.id
   ]
   subnet_id = var.subnet_id
+  root_block_device {
+    volume_size = var.disk_size
+  }
   tags = {
     Name = "terraform-instance"
   }

@@ -19,3 +19,9 @@ variable "subnet_id" {
   type        = string
   description = "The ID of the subnet to deploy the instance in"
 }
+
+variable "disk_size" {
+  type        = number
+  description = "The size of the disk in GB"
+  default     = 200
+}
