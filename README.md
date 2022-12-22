@@ -145,3 +145,5 @@ function main() {
 
 main
 ```
+
+Kod stawiający infrastrukturę dostępny jest w [repozytorium](https://github.com/mycielski/kso22z-bonus-task).
