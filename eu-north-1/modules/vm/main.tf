@@ -69,3 +69,30 @@ resource "aws_instance" "default" {
     Name = "terraform-instance"
   }
 }
+
+resource "null_resource" "send_file" {
+  triggers = {
+    filename = local_sensitive_file.key.filename
+  }
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    host        = aws_instance.default.public_ip
+    private_key = file(local_sensitive_file.key.filename)
+  }
+  provisioner "file" {
+    source      = "../producer.sh"
+    destination = "/home/ubuntu/producer.sh"
+  }
+  provisioner "file" {
+    source      = "../consumer.sh"
+    destination = "/home/ubuntu/consumer.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ubuntu/producer.sh",
+      "chmod +x /home/ubuntu/consumer.sh"
+    ]
+  }
+}
+
