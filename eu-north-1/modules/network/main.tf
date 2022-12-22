@@ -29,7 +29,7 @@ resource "aws_route_table" "default" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.default.id
-    }
+  }
 }
 
 resource "aws_route_table_association" "default" {
